@@ -95,7 +95,7 @@ function showData(definition, eg, synonyms, antonyms){
     e.innerText = eg;
     let ex = document.createElement("h6");
     ex.classList.add("example");
-    ex.innerText = Example;
+    ex.innerText = "Example";
 
     let sh6 = document.createElement("h6");
     sh6.classList.add("synonyms");
@@ -126,7 +126,7 @@ function showData(definition, eg, synonyms, antonyms){
     // console.log(antos);
 
     Container.appendChild(define);
-    if(e.value != undefined){
+    if(e.length > 0){
         Container.appendChild(ex);
         Container.appendChild(e);  
     }
