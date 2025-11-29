@@ -1,10 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  /* display: inline-block; */
+}
 h1, h2, h3 {
     
   font-family: "Agdasima", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
-
+.header {
+  margin-top: 2rem;
+  padding: 5px;
+  background-color: #f9fafa;
+  
+}
 h1 {
   display: flex;
   justify-content: center;
@@ -44,7 +54,7 @@ div input {
   height: 30px;
   width: 50px;
   font-size: 10px;
-  background-color: rgb(52, 57, 61);
+  background-color: rgb(57, 65, 73);
   color: white;
   border-radius: 10px;
   border: 1.8px solid rgb(0, 0, 0);
@@ -63,6 +73,7 @@ div input {
   margin-left: 2rem;
   font-weight: 300;
   box-shadow: 2px 2px 10px #4e5156;
+  padding: 12px;
 }
 .search-bar input::placeholder{
   color:white;
@@ -71,13 +82,50 @@ div input {
   border: 2px solid black;
 }
 .psc{
-  background-color: lightblue;
+  background-color: #edf2f2;
+  margin: 0.3rem;
+  border: 1px solid rgb(238, 238, 238);
+  padding: 1px;
+  padding-left: 5px;
+  margin-bottom: 5px;
+  /* display: inline; */
 }
 .partOfSpeech {
-  background-color: #1A237E;
+  background-color: #cac7c4;
+  display: inline;
+  background: linear-gradient( gray, white);
+  padding: 2px;
+  padding-bottom: 7px;
+  margin: 2px;
 }
 .search-engine {
   display: flex;
   justify-content: start;
   align-items: center;
+}
+.outer-box{
+  /* margin: 5px; */
+  margin: 2px;
+  padding: 10px;
+  background-color: #f6fff8;
+}
+
+.example{
+  padding: 0;
+  margin: 0;
+  display: contents;
+  background-color: rgb(167, 163, 163);
+}
+/* .definition{
+  margin: 0;
+} */
+.defs{
+  padding: 2px;
+  margin: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color:#e9ecef;
+  
+
 }

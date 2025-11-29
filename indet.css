@@ -1,0 +1,15 @@
+.logo {
+    background-image: url(assert/dict_logo.png);
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: antiquewhite;
+    color: rgb(2, 2, 246);
+    text-decoration: underline;
+}
+

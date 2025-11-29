@@ -40,6 +40,14 @@ search_btn.addEventListener("click", () => {
     let word = inp.value;
     getMeaning(word);
 });
+inp.addEventListener("keypress", (event) => {
+    console.log();
+    if(event.key === "Enter"){
+        getMeaning(inp.value);
+    }
+    
+    
+})
 
 async function getMeaning(word) {
     try {
@@ -82,15 +90,24 @@ async function printdetails(word, data) {
     // console.log(antonyms);
     // console.log(definitions);
 };
+let Contain = document.querySelector(".outer-box");
 
 function showData(definition, eg, synonyms, antonyms){
  
     let Container = document.createElement("div");
     Container.classList.add("psc");
-
+    let def = document.createElement("div");
+    def.classList.add("defs");
+    let defHead = document.createElement("h6");
+    defHead.innerText = "Definition";
     let define = document.createElement("p");
     define.classList.add("definition");
     define.innerText = definition;
+    def.appendChild(defHead);
+    def.appendChild(define);
+    Container.appendChild(def);
+
+
     let e = document.createElement("p");
     e.innerText = eg;
     let ex = document.createElement("h6");
@@ -126,48 +143,63 @@ function showData(definition, eg, synonyms, antonyms){
     // console.log(antos);
 
     Container.appendChild(define);
-    if(e.length > 0){
+    if(eg){
         Container.appendChild(ex);
         Container.appendChild(e);  
     }
-    if(synonyms.length > 0){
+    if(synonyms){
         Container.appendChild(sh6);
         sh6.appendChild(ps);  
-    }
+    }//else {
+    //     let p = document.createElement("p");
+    //     p.innerText = "No synonym found in this part of speech.";
+    //     Container.appendChild(p);
+    // }
     console.log(pa.value);
     if(antonyms.length > 0){
         Container.appendChild(ah6);
         ah6.appendChild(pa);
-    }
+    }//else {
+    //     let p = document.createElement("p");
+    //     p.innerText = "No antonyms found in this part of speech.";
+    //     Container.appendChild(p);
+    // }
     
 
-    document.body.appendChild(Container);
+    div4.appendChild(Container);
     
 }
 
-
+let div4 = document.createElement("div");
 function showWord(word, phonet){
+    return new Promise((resolve, reject) => {
+        try {
+            
+            let h3 = document.createElement("h3");
+            let h4 = document.createElement("h4");
 
-    let div = document.createElement("div");
-    let h3 = document.createElement("h3");
-    let h4 = document.createElement("h4");
 
+            h3.innerText = word;
+            h4.innerText = phonet;
 
-    h3.innerText = word;
-    h4.innerText = phonet;
-    div.appendChild(h3);
-    div.appendChild(h4);
-    document.body.append(div);
-
+            div4.appendChild(h3);
+            div4.appendChild(h4);
+            Contain.prepend(div4);
+            resolve("done");
+        }catch(e){
+            reject(e);
+        }
+    });
 }
 
-function collectData(data){
+async function collectData(data){
     let item = data[0];
     let word = item.word;
     let phonet = item.phonetic;
     let meanings = item.meanings;
-    showWord(word, phonet);
-
+    let res = await showWord(word, phonet);
+    console.log(res);
+    console.log("word has meaning");
     for (let i = 0; i < meanings.length; i++) {
 
 
@@ -175,7 +207,7 @@ function collectData(data){
         let part = document.createElement("h4");
         part.classList.add("partOfSpeech");
         part.innerText = pos;
-        document.body.appendChild(part);
+        div4.appendChild(part);
         console.log(meanings[i]);
         for (let j = 0; j < meanings[i].definitions.length; j++) {
             console.log(meanings[i].definitions.length);
@@ -184,14 +216,15 @@ function collectData(data){
             let syno = v.synonyms;
             let anto = v.antonyms;
             let eg = v.example;
+            console.log("datashow");
             showData(define, eg, syno, anto);
         }
-        let syno2 = meanings[i].synonyms;
-        if(syno2.length > 0){
-            let synonym = document.createElement("h6");
-            synonym.innerText = syno2;
-            document.body.appendChild(synonym);
-        }
+        // let syno2 = meanings[i].synonyms;
+        // if(syno2.length > 0){
+        //     let synonym = document.createElement("h6");
+        //     synonym.innerText = syno2;
+        //     Contain.appendChild(synonym);
+        // }
         
         
     }
